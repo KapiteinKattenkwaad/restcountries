@@ -3,12 +3,19 @@
         <h2>
             All Countries
         </h2>
-      <div v-for="country in countries" :key="country.index">
-        <p>
-          {{ country.name }}
-        </p>
-        <img width="300px" height="500px" :src=country.flag :alt=country.name>
-      </div>
+      <label for="region">Select your region:</label>
+        <select @change="getRegion" v-model="region" name="region" id="region">
+            <option v-for="region in regions" :key="region.index" :value="region">
+                {{ region }}
+            </option>
+        </select>
+
+        <div v-for="country in countries" :key="country.index">
+            <p>
+                {{ country.name }}
+            </p>
+            <img width="300px" height="500px" :src=country.flag :alt=country.name>
+        </div>
 
     </div>
 </template>
@@ -21,20 +28,41 @@
         props: {},
         data() {
             return {
-                countries: null
+                countries: null,
+                europe: null,
+                region: null,
+                regions: [
+                    'africa', 'americas', 'asia', 'europe', 'oceania'
+                ]
             }
         },
-            mounted() {
+
+        mounted() {
+            axios
+                .get('https://restcountries.eu/rest/v2/all')
+                .then(response => {
+                    console.log(response.data[0])
+                    this.countries = response.data
+                })
+                .catch(function (error) {
+                    console.log(error);
+                })
+
+
+        },
+        methods: {
+            getRegion() {
                 axios
-                    .get('https://restcountries.eu/rest/v2/all')
-                    .then(response =>  {
-                      console.log(response.data[0])
-                      this.countries = response.data
+                    .get(`https://restcountries.eu/rest/v2/region/${this.region}`)
+                    .then(response => {
+                        this.countries = response.data
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error)
                     })
             }
+        },
+      
     }
 </script>
 
