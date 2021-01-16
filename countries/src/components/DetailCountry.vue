@@ -1,13 +1,88 @@
 <template>
-    <div class="hello">
-        <h2>
-            Detail
-        </h2>
+    <div class="detail-country  text-white">
+        <Navbar/>
+        <div class="detail-country-wrapper max-w-4xl mx-auto">
+            <router-link :to="{ name: 'Home'}">
+                <div class="back-button flex content-center shadow-lg rounded px-6 py-4 w-24">
+                    Back
+                </div>
+            </router-link>
+            <div class="detail-wrapper flex items-center justify-between ">
+                <div class="left">
+                    <img
+                            class=""
+                            :src=singleCountry.flag :alt=singleCountry.name>
+                </div>
+                <div class="right">
+                    <h3
+                            class="font-extrabold text-2xl mb-5"
+                    >
+                        {{ singleCountry.name }}
+                    </h3>
+                    <div class="sub-details-wrapper">
+                        <div class="left">
+                            <p>
+                                <b>
+                                    Native name:
+                                </b>
+                                {{ singleCountry.nativeName }}
+                            </p>
+                            <p>
+                                <b>
+                                    Population:
+                                </b>
+                                {{ singleCountry.population }}
+                            </p>
+                            <p>
+                                <b>
+                                    Region:
+                                </b>
+                                {{ singleCountry.region }}
+                            </p>
+                            <p>
+                                <b>
+                                    Sub Region:
+                                </b>
+                                {{ singleCountry.subregion }}
+                            </p>
+                            <p>
+                                <b>
+                                    Capital:
+                                </b>
+                                {{ singleCountry.capital }}
+                            </p>
 
-        <p>
-            {{ singleCountry.name }}
-        </p>
+                        </div>
+                        <div class="right">
+                            <p>
+                                <b>
+                                    Top Level Domain:
+                                </b>
+                                {{ singleCountry.topLevelDomain[0] }}
+                            </p>
+                            <p>
+                                <b>
+                                    Currencies:
+                                </b>
+                                <span v-for="currency in singleCountry.currencies" :key="currency.index">
+                                    {{ currency.name }}
+                                </span>
+                            </p>
+                            <p>
+                                <b>
+                                    Languages:
+                                </b>
+                                <span v-for="language in singleCountry.languages" :key="language.index">
+                                    {{ language.name }}
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+
+        </div>
 
 
     </div>
@@ -15,9 +90,11 @@
 
 <script>
     import axios from 'axios'
+    import Navbar from "./NavBar";
 
     export default {
         name: 'DetailCountry',
+        components: {Navbar},
         props: {
             country: String,
 

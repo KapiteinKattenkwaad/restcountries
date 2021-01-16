@@ -1,10 +1,33 @@
 <template>
     <div class="country-card ">
-        <img width="220px" height="160px" :src=country.flag :alt=country.name>
+        <img
+                class="h-32 w-56 rounded "
+                width="220px" height="160px"
+                :src=country.flag :alt=country.name>
         <div class="country-card-wrapper p-4 px-6">
-            <p class="font-semibold">
+            <b class="font-semibold my-3">
                 {{ country.name }}
-            </p>
+            </b>
+            <div class="country-card-detail">
+                <p>
+                    <b>
+                        Population:
+                    </b>
+                    {{ country.population }}
+                </p>
+                <p>
+                    <b>
+                        Region:
+                    </b>
+                    {{ country.region }}
+                </p>
+                <p>
+                    <b>
+                        Capital:
+                    </b>
+                    {{ country.capital }}
+                </p>
+            </div>
         </div>
     </div>
 </template>

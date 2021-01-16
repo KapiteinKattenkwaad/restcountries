@@ -29,9 +29,11 @@
         </div>
         <div class="countries-list flex flex-wrap">
             <div v-for="country in countries" :key="country.name">
-                <router-link :to="'/country/' + country.name">
+
+                    <router-link :to="{ name: 'DetailCountry', params: { name: country.name }}">
+
                     <CountryCard
-                            class="flex flex-col flex-wrap  bg-dark-blue rounded mr-8"
+                            class="flex flex-col flex-wrap  bg-dark-blue rounded mr-8 my-8"
                             :country=country
                     >
                     </CountryCard>
