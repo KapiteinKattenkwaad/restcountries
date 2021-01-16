@@ -7,7 +7,7 @@
         <p>
             {{ singleCountry.name }}
         </p>
-      
+
 
 
     </div>
