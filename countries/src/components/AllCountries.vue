@@ -10,32 +10,42 @@
             </option>
         </select>
       <br>
+
       <input v-on:keyup="getNameCountry" v-model="nameCountry" placeholder="Search country">
       <p>Message is: {{ nameCountry }}</p>
 
-        <div v-for="country in countries" :key="country.index">
-            <p>
+        <div v-for="country in countries" :key="country.name">
+          <router-link  :to="'/country/' + country.name">
+            <CountryCard
+              :country=country
+            >
+              <h6>
                 {{ country.name }}
-            </p>
-            <img width="300px" height="500px" :src=country.flag :alt=country.name>
+              </h6>
+            </CountryCard>
+          </router-link>
+
         </div>
+
 
     </div>
 </template>
 
 <script>
     import axios from 'axios'
+    import CountryCard from "./CountryCard";
 
     export default {
         name: 'AllCountries',
-        props: {},
+      components: {CountryCard},
+      props: {},
         data() {
             return {
                 countries: null,
                 region: null,
                 nameCountry: null,
                 regions: [
-                    'africa', 'americas', 'asia', 'europe', 'oceania'
+                    'Africa', 'Americas', 'Asia', 'Europe', 'Oceania'
                 ]
             }
         },
