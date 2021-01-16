@@ -9,6 +9,9 @@
                 {{ region }}
             </option>
         </select>
+      <br>
+      <input v-on:keyup="getNameCountry" v-model="nameCountry" placeholder="Search country">
+      <p>Message is: {{ nameCountry }}</p>
 
         <div v-for="country in countries" :key="country.index">
             <p>
@@ -29,8 +32,8 @@
         data() {
             return {
                 countries: null,
-                europe: null,
                 region: null,
+                nameCountry: null,
                 regions: [
                     'africa', 'americas', 'asia', 'europe', 'oceania'
                 ]
@@ -60,9 +63,20 @@
                     .catch(function (error) {
                         console.log(error)
                     })
+            },
+            getNameCountry() {
+              axios
+                      .get(`https://restcountries.eu/rest/v2/name/${this.nameCountry}`)
+                      .then(response => {
+                        console.log('response', response.data)
+                        this.countries = response.data
+                      })
+                      .catch(function (error) {
+                        console.log(error)
+                      })
             }
         },
-      
+
     }
 </script>
 
