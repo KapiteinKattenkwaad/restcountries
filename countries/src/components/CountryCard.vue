@@ -1,11 +1,11 @@
 <template>
-    <div class="country-card ">
+    <div class="country-card w-56 ">
         <img
                 class="h-32 w-56 rounded "
                 width="220px" height="160px"
                 :src=country.flag :alt=country.name>
         <div class="country-card-wrapper p-4 px-6">
-            <b class="font-semibold my-3">
+            <b class="font-extrabold text-xl mt-3 mb-10 pb-16">
                 {{ country.name }}
             </b>
             <div class="country-card-detail">

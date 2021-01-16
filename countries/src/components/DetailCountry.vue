@@ -1,25 +1,25 @@
 <template>
     <div class="detail-country  text-white">
         <Navbar/>
-        <div class="detail-country-wrapper max-w-4xl mx-auto">
+        <div class="detail-country-wrapper max-w-4xl mx-auto px-1">
             <router-link :to="{ name: 'Home'}">
                 <div class="back-button flex content-center shadow-lg rounded px-6 py-4 w-24">
                     Back
                 </div>
             </router-link>
-            <div class="detail-wrapper flex items-center justify-between ">
-                <div class="left">
+            <div class="detail-wrapper flex items-center justify-between mt-16 ">
+                <div class="left flex-1">
                     <img
-                            class=""
+                            class="w-2/3"
                             :src=singleCountry.flag :alt=singleCountry.name>
                 </div>
-                <div class="right">
+                <div class="right flex-1">
                     <h3
                             class="font-extrabold text-2xl mb-5"
                     >
                         {{ singleCountry.name }}
                     </h3>
-                    <div class="sub-details-wrapper">
+                    <div class="sub-details-wrapper md:flex">
                         <div class="left">
                             <p>
                                 <b>
