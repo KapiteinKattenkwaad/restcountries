@@ -8,12 +8,12 @@
                 </div>
             </router-link>
             <div class="detail-wrapper flex items-center justify-between mt-16 ">
-                <div class="left flex-1">
+                <div class="left-flag flex-1">
                     <img
                             class="w-2/3"
                             :src=singleCountry.flag :alt=singleCountry.name>
                 </div>
-                <div class="right flex-1">
+                <div class="right-info flex-1">
                     <h3
                             class="font-extrabold text-2xl mb-5"
                     >
@@ -123,6 +123,25 @@
 
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
+.left-flag  {
+    animation: fly-in .3s ease;
+}
+.right-info {
+    animation: fly-in .5s ease;
+}
 
+    @keyframes fly-in {
+        0% {
+            opacity: 0;
+            transform: translateX(600px);
+        }
+        90% {
+            opacity: 1;
+            transform: translateX(-20px)
+        }
+        100% {
+            transform: translateX(0)
+        }
+    }
 </style>

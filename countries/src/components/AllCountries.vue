@@ -1,12 +1,12 @@
 <template>
     <div class="all-countries max-w-5xl px-4 my-12 mx-auto"
-         >
-        <button @click="toggleTheme" >
+    >
+        <button @click="toggleTheme">
             toggle theme
 
         </button>
 
-        <div class="top-wrapper flex justify-between content-center">
+        <div class="top-wrapper flex flex-col text-center md:text-left md:justify-between md:flex-row content-center">
             <div class="search">
                 <input
                         class="px-6 py-3 text-sm rounded border border-solid"
@@ -15,8 +15,7 @@
                         v-model="nameCountry"
                         placeholder="Search country">
             </div>
-            <div class="region">
-                <label for="region">Select your region:</label>
+            <div class="region mt-4  md:mt-0">
                 <select class="border border-solid "
                         :class="this.$store.state.theme"
                         @change="getRegion"
@@ -40,14 +39,14 @@
                 </p>
             </div>
         </div>
-        <div v-else class="countries-list flex flex-wrap justify-between">
+        <div v-else class="countries-list flex flex-wrap justify-center md:justify-between">
             <div v-for="country in countries" :key="country.name">
 
                 <router-link :to="{ name: 'DetailCountry', params: { name: country.name }}">
 
                     <CountryCard
                             class="country-card flex flex-col flex-wrap rounded shadow-lg my-8"
-                            :class="theme"
+                            :class="this.$store.state.theme"
                             :country=country
                     >
                     </CountryCard>
@@ -87,15 +86,23 @@
                 height: 6px;
                 content: '';
             }
+
             ::placeholder {
                 color: white;
             }
         }
     }
 
+    @media screen and (max-width: 495px) {
+        .countries-list {
+            justify-content: center;
+        }
+    }
+
     .country-card {
         opacity: 0;
         transition: all .3s ease;
+
         &:hover {
         }
     }
@@ -105,7 +112,7 @@
     import axios from 'axios'
     import CountryCard from "./CountryCard";
     import gsap from 'gsap'
-    import { mapGetters } from "vuex";
+    import {mapGetters} from "vuex";
 
     export default {
         name: 'AllCountries',
@@ -124,7 +131,7 @@
             }
         },
         computed: {
-            ...mapGetters({ theme: "getTheme" }),
+            ...mapGetters({theme: "getTheme"}),
         },
         watch: {
             theme(newTheme) {
@@ -156,19 +163,19 @@
                             stagger: 0.18
                         });
                     })
-                } )
+                })
         },
         methods: {
             toggleTheme() {
                 this.$store.dispatch("toggleTheme");
             },
-         /*   toggleTheme() {
-                if (this.theme === 'theme-light') {
-                    this.theme = 'theme-dark'
-                } else {
-                    this.theme = 'theme-light'
-                }
-            },*/
+            /*   toggleTheme() {
+                   if (this.theme === 'theme-light') {
+                       this.theme = 'theme-dark'
+                   } else {
+                       this.theme = 'theme-light'
+                   }
+               },*/
             getRegion() {
                 axios
                     .get(`https://restcountries.eu/rest/v2/region/${this.region}`)
