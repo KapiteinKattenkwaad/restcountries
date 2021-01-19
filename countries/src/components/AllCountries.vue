@@ -16,6 +16,7 @@
                         placeholder="Search country">
             </div>
             <div class="region mt-4  md:mt-0">
+
                 <select class="border border-solid "
                         :class="this.$store.state.theme"
                         @change="getRegion"
@@ -76,6 +77,23 @@
             transform: scale(.45);
             opacity: .6;
         }
+    }
+
+    .dropdown {
+        position: relative;
+        display: inline-block;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        min-width: 160px;
+        padding: 12px 16px;
+        z-index: 1;
+    }
+
+    .dropdown:hover .dropdown-content {
+        display: block;
     }
 
     .search {

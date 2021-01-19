@@ -1,16 +1,17 @@
 <template>
     <div class="detail-country  text-white">
         <Navbar/>
-        <div class="detail-country-wrapper max-w-4xl mx-auto px-1">
+        <div class="detail-country-wrapper max-w-5xl mx-auto px-1">
             <router-link :to="{ name: 'Home'}">
-                <div class="back-button flex content-center shadow-lg rounded px-6 py-4 w-24">
+                <div class="back-button flex content-center shadow-lg rounded border-solid
+                            px-6 py-4 mt-8 flex mx-auto md:mx-0 w-24 ">
                     Back
                 </div>
             </router-link>
-            <div class="detail-wrapper flex items-center justify-between mt-16 ">
+            <div class="detail-wrapper flex items-center flex-col md:flex-row justify-between mt-16 text-center md:text-left ">
                 <div class="left-flag flex-1">
                     <img
-                            class="w-2/3"
+                            class="mx-auto mb-6 md:m-0 w-2/3"
                             :src=singleCountry.flag :alt=singleCountry.name>
                 </div>
                 <div class="right-info flex-1">
